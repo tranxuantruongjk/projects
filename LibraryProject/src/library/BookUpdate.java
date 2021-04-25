@@ -44,21 +44,21 @@ public class BookUpdate extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Mã sách:");
+        jLabel1.setText("BookID:");
 
-        jLabel2.setText("Tên sách:");
+        jLabel2.setText("Name:");
 
-        jLabel3.setText("Mã thể loại:");
+        jLabel3.setText("CateID:");
 
-        jLabel4.setText("Mã NXB:");
+        jLabel4.setText("PublID:");
 
-        jLabel5.setText("Tác giả:");
+        jLabel5.setText("Author:");
 
-        jLabel6.setText("Năm XB:");
+        jLabel6.setText("PublYear:");
 
-        jLabel7.setText("Giá đặt:");
+        jLabel7.setText("Shelf:");
 
-        jLabel8.setText("Số lượng:");
+        jLabel8.setText("Quantity:");
 
         jLabel9.setText(bookInfo.getMa_sach());
 
@@ -77,7 +77,7 @@ public class BookUpdate extends javax.swing.JFrame {
         jTextField7.setText(Integer.toString(bookInfo.getSo_luong()));
 
 
-        jButton1.setText("Thoát");
+        jButton1.setText("Cancel");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

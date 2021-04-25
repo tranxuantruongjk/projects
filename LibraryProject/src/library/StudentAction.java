@@ -13,11 +13,11 @@ public class StudentAction extends javax.swing.JFrame {
     public void bookView(){
 //        model = (DefaultTableModel) jTable1.getModel();
         model.setColumnCount(0);
-        model.setColumnIdentifiers(new Object[]{"Mã sách","Tên sách","Mã thể loại","Mã NXB","Tác giả","Năm xuất bản","Giá đặt","Số lượng"});
+        model.setColumnIdentifiers(new Object[]{"BookID","Name","CateID","PubliID","Author","PublYear","Shelf","Quantity"});
     }
     public void historyView(){
         model.setColumnCount(0);
-        model.setColumnIdentifiers(new Object[]{"Mã sách","MSSV","Ngày mượn","Hạn trả"});
+        model.setColumnIdentifiers(new Object[]{"BookID","StudentID","BorDate","ResDate"});
     }
     public void showHistory(Student studentlogin){
         historyInfoList = HistoryModify.historyStudent(studentlogin);
@@ -78,40 +78,40 @@ public class StudentAction extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sinh Viên");
+        setTitle("Student");
 
-        jButton1.setText("Thông tin cá nhân");
+        jButton1.setText("My Information");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt,studentlogin);
             }
         });
 
-        jButton2.setText("Lịch sử mượn");
+        jButton2.setText("Borrowed Books");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt,studentlogin);
             }
         });
 
-        jLabel1.setText("Tên sách");
+        jLabel1.setText("Name");
 
-        jLabel2.setText("Thể loại");
+        jLabel2.setText("Category");
 
-        jLabel3.setText("Năm xuất bản");
+        jLabel3.setText("Published Year");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020" }));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990" }));
 
-        jButton3.setText("Đăng xuất");
+        jButton3.setText("Log Out");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Tìm kiếm");
+        jButton4.setText("Find");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -226,7 +226,7 @@ public class StudentAction extends javax.swing.JFrame {
             studentInfo = st ;
             break;}
         }
-        StudentShow studentFrame = new StudentShow(studentInfo);
+        StudentUpdate studentFrame = new StudentUpdate(studentInfo);
         studentFrame.setLocationRelativeTo(null);
         studentFrame.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed

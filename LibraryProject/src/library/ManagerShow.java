@@ -47,17 +47,17 @@ public class ManagerShow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Mã nhân viên:");
+        jLabel1.setText("ManagerID:");
 
-        jLabel2.setText("Họ tên:");
+        jLabel2.setText("Name:");
 
-        jLabel3.setText("Giới Tính:");
+        jLabel3.setText("Gender:");
 
-        jLabel4.setText("Số điện thoại:");
+        jLabel4.setText("Phone Number:");
 
         jLabel5.setText("Email:");
 
-        jLabel6.setText("Mật Khẩu:");
+        jLabel6.setText("Password:");
 
         jTextField2.setText(nhanvienlogin.getHo_ten());
 
@@ -83,7 +83,7 @@ public class ManagerShow extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Thoát");
+        jButton2.setText("Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

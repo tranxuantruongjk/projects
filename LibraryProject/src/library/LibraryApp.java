@@ -35,11 +35,11 @@ public class LibraryApp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Tên Đăng Nhập");
+        jLabel1.setText("User Name");
 
-        jLabel2.setText("Mật Khẩu");
+        jLabel2.setText("Password");
 
-        jButton1.setText("Đăng Nhập");
+        jButton1.setText("Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

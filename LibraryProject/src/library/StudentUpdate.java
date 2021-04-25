@@ -14,13 +14,13 @@ import java.util.List;
  *
  * @author hoangviet
  */
-public class StudentShow extends javax.swing.JFrame {
+public class StudentUpdate extends javax.swing.JFrame {
 
     List<Student> studentInfoList = new ArrayList<>();
     /**
      * Creates new form studentFrame
      */
-    public StudentShow(Student studentlogin) {
+    public StudentUpdate(Student studentlogin) {
         initComponents(studentlogin);
     }
 
@@ -50,19 +50,19 @@ public class StudentShow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("MSSV:");
+        jLabel1.setText("Student ID:");
 
         jLabel2.setText(studentlogin.getMssv());
 
-        jLabel3.setText("Họ tên :");
+        jLabel3.setText("Full Name :");
 
-        jLabel4.setText("Khóa:");
+        jLabel4.setText("Course:");
 
-        jLabel5.setText("Lớp:");
+        jLabel5.setText("Class:");
 
         jLabel6.setText("Email:");
 
-        jLabel7.setText("Mật Khẩu:");
+        jLabel7.setText("Password:");
 
         jTextField1.setText(studentlogin.getHo_ten());
 
@@ -74,13 +74,13 @@ public class StudentShow extends javax.swing.JFrame {
 
         jTextField4.setText(studentlogin.getMat_khau());
 
-        jButton1.setText("Thay đổi");
+        jButton1.setText("Update");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt,studentlogin);
             }
         });
-        jButton2.setText("Thoát");
+        jButton2.setText("Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -196,20 +196,20 @@ public class StudentShow extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(StudentShow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(StudentUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(StudentShow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(StudentUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(StudentShow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(StudentUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(StudentShow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(StudentUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new StudentShow().setVisible(true);
+//                new StudentUpdate().setVisible(true);
 //            }
 //        });
 //    }

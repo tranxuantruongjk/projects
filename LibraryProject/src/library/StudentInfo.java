@@ -10,12 +10,12 @@ package library;
  *
  * @author hoangviet
  */
-public class StudentLogOut extends javax.swing.JFrame {
+public class StudentInfo extends javax.swing.JFrame {
 
     /**
      * Creates new form sh
      */
-    public StudentLogOut(Student studentInfo) {
+    public StudentInfo(Student studentInfo) {
         initComponents(studentInfo);
     }
 
@@ -42,13 +42,13 @@ public class StudentLogOut extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("MSSV:");
+        jLabel1.setText("Student ID:");
 
-        jLabel2.setText("Họ Tên :");
+        jLabel2.setText("Full name:");
 
-        jLabel3.setText("Khóa:");
+        jLabel3.setText("Course:");
 
-        jLabel4.setText("Lớp:");
+        jLabel4.setText("Class:");
 
         jLabel5.setText("Email:");
 
@@ -62,7 +62,7 @@ public class StudentLogOut extends javax.swing.JFrame {
 
         jLabel10.setText(studentInfo.getEmail_sis());
 
-        jButton1.setText("Thoát");
+        jButton1.setText("Cancel");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -152,20 +152,20 @@ public class StudentLogOut extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(StudentLogOut.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(StudentInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(StudentLogOut.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(StudentInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(StudentLogOut.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(StudentInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(StudentLogOut.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(StudentInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new StudentLogOut().setVisible(true);
+//                new StudentInfo().setVisible(true);
 //            }
 //        });
 //    }

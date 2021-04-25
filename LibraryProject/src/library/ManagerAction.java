@@ -27,11 +27,11 @@ public class ManagerAction extends javax.swing.JFrame {
     public void bookView(){
 //        model = (DefaultTableModel) jTable1.getModel();
         model.setColumnCount(0);
-        model.setColumnIdentifiers(new Object[]{"Mã sách","Tên sách","Mã thể loại","Mã NXB","Tác giả","Năm XB","Giá đặt","Số lượng"});
+        model.setColumnIdentifiers(new Object[]{"BookID","Name","CateID","PublID","Author","PublYear","Shelf","Quantity"});
     }
     public void historyView(){
         model.setColumnCount(0);
-        model.setColumnIdentifiers(new Object[]{"Mã sách","MSSV","Ngày mượn","Hạn trả"});
+        model.setColumnIdentifiers(new Object[]{"BookID","StudentID","BorDate","ResDate"});
     }
     public void showAllHistory(){
         historyInfoList = HistoryModify.findAll();
@@ -80,37 +80,37 @@ public class ManagerAction extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Nhân Viên");
+        setTitle("Manager");
 
-        jButton1.setText("Thông tin nhân viên");
+        jButton1.setText("My Information");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt,nhanvienlogin);
             }
         });
 
-        jButton2.setText("Thông tin loại sách quản lý");
+        jButton2.setText("Books managed");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt,nhanvienlogin);
             }
         });
 
-        jButton3.setText("Mượn sách");
+        jButton3.setText("Borrow");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Trả sách");
+        jButton4.setText("Restore");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Đăng xuất");
+        jButton5.setText("Log out");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -132,7 +132,7 @@ public class ManagerAction extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jButton6.setText("Thông tin sách đến hạn trả");
+        jButton6.setText("Due date Books");
         jButton6.setActionCommand("Thông tin sách đến hạn trả");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,13 +152,13 @@ public class ManagerAction extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Mã sách");
+        jLabel1.setText("Book ID");
 
-        jLabel2.setText("MSSV");
+        jLabel2.setText("Student ID");
 
-        jLabel3.setText("Tên nhân viên:"+ nhanvienlogin.getHo_ten());
+        jLabel3.setText("Name :"+ nhanvienlogin.getHo_ten());
 
-        jButton7.setText("Tìm kiếm");
+        jButton7.setText("Find");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -293,7 +293,7 @@ public class ManagerAction extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int selectedIndex = jTable1.getSelectedRow();
-        if(selectedIndex >= 0 && model.getColumnCount() ==5){
+        if(selectedIndex >= 0){
             HistoryInfo htr = historyInfoList.get(selectedIndex);
             HistoryModify.deleteHistory(htr.getMa_sach(),htr.getMssv());
             historyView();
@@ -346,15 +346,15 @@ public class ManagerAction extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
     private void jTable1FocusLost(java.awt.event.FocusEvent evt) {
         // TODO add your handling code here:
-     //   JOptionPane.showMessageDialog(null,"dang nhap thanh cong");
+   
         int selectedIndex = jTable1.getSelectedRow();
-        if(selectedIndex >= 0 && model.getColumnCount() ==5){
+        if(selectedIndex >= 0 && model.getColumnCount() == 4){
             HistoryInfo htr = historyInfoList.get(selectedIndex);
             studentInfoList = StudentModify.findAll();
             for(Student studentInfo :studentInfoList)
             {
                 if(htr.getMssv().equals(studentInfo.getMssv())){
-                    StudentLogOut showinfo = new StudentLogOut(studentInfo);
+                    StudentInfo showinfo = new StudentInfo(studentInfo); 
                     showinfo.setLocationRelativeTo(null);
                     showinfo.setVisible(true);
                     break;
@@ -362,7 +362,7 @@ public class ManagerAction extends javax.swing.JFrame {
             }
         }
 
-        else if (selectedIndex >= 0 && model.getColumnCount() ==8)
+        else if (selectedIndex >= 0 && model.getColumnCount() == 8)
         {
             Book bookInfo = bookInfoList.get(selectedIndex);
             BookUpdate updatebook = new BookUpdate(bookInfo);

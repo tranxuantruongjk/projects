@@ -33,43 +33,43 @@ public class EdmondsKarpSolver extends NetworkFlowSolverBase {
         do {
             visitedToken++;
             flow = bfs();
-            maxFlow += flow;
+            setMaxFlow(flow); // maxFlow += flow
         } while (flow != 0);
     }
     
     public long bfs() {
         
         // Initialize BFS queue and add starting source node.
-        Queue<Integer> q = new ArrayDeque<>(n);
-        visit(s);
-        q.offer(s);
+        Queue<Integer> q = new ArrayDeque<>(getN());
+        visit(getS());
+        q.offer(getS());
 
         // Perform BFS from source to sink
-        Edge[] prev = new Edge[n];
+        Edge[] prev = new Edge[getN()];
         while (!q.isEmpty()) {
             int node = q.poll();
-            if (node == t) break;
+            if (node == getT()) break;
 
-            for (Edge edge : graph[node]) {
+            for (Edge edge : getGraph()[node]) {
                 long cap = edge.remainingCapacity();
-                if (cap > 0 && !visited(edge.to)) {
-                    visit(edge.to);
-                    prev[edge.to] = edge;
-                    q.offer(edge.to);
+                if (cap > 0 && !visited(edge.getTo())) {
+                    visit(edge.getTo());
+                    prev[edge.getTo()] = edge;
+                    q.offer(edge.getTo());
                 }
             }
         }
 
         // Sink not reachable!
-        if (prev[t] == null) return 0;
+        if (prev[getT()] == null) return 0;
 
         // Find augmented path and bottle neck
         long bottleNeck = Long.MAX_VALUE;
-        for (Edge edge = prev[t]; edge != null; edge = prev[edge.from])
+        for (Edge edge = prev[getT()]; edge != null; edge = prev[edge.getFrom()])
             bottleNeck = min(bottleNeck, edge.remainingCapacity());
 
         // Retrace augmented path and update flow values.
-        for (Edge edge = prev[t]; edge != null; edge = prev[edge.from]) edge.augment(bottleNeck);
+        for (Edge edge = prev[getT()]; edge != null; edge = prev[edge.getFrom()]) edge.augment(bottleNeck);
 
         // Return bottleneck flow
         return bottleNeck;

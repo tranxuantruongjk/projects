@@ -9,11 +9,43 @@
  * @author xuantruong
  */
 public class Edge {
-    protected int from, to;
-    protected Edge residual;
-    protected long flow;
-    protected final long capacity;
+    private int from, to;
+    private Edge residual;
+    private long flow;
+    private final long capacity;
 
+    public int getFrom() {
+        return from;
+    }
+
+    public void setFrom(int from) {
+        this.from = from;
+    }
+
+    public int getTo() {
+        return to;
+    }
+
+    public void setTo(int to) {
+        this.to = to;
+    }
+
+    public Edge getResidual() {
+        return residual;
+    }
+
+    public void setResidual(Edge residual) {
+        this.residual = residual;
+    }
+
+    public long getFlow() {
+        return flow;
+    }
+
+    public void setFlow(long flow) {
+        this.flow = flow;
+    }
+    
     public Edge(int from, int to, long capacity) {
         this.from = from;
         this.to = to;
@@ -36,6 +68,8 @@ public class Edge {
     public String toString(int s, int t) {
         String u = (from == s) ? "s" : ((from == t) ? "t" : String.valueOf(from));
         String v = (to == s) ? "s" : ((to == t) ? "t" : String.valueOf(to));
+//        String u = String.valueOf(from);
+//        String v = String.valueOf(to);
         return String.format(
             "Edge %s -> %s | flow = %3d | capacity = %3d | is residual: %s",
             u, v, flow, capacity, isResidual());

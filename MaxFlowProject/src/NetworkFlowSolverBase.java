@@ -13,29 +13,23 @@ import java.util.List;
  * @author xuantruong
  */
 public abstract class NetworkFlowSolverBase {
-    // To avoid overflow, set infinity to a value less than Long.MAX_VALUE;
-    static final long INF = Long.MAX_VALUE / 2;
-
     // Inputs: n = number of nodes, s = source, t = sink
-    final int n, s, t;
-
+    private int n;
+    private int s;
+    private int t;
+    // The adjacency list representing the flow graph.
+    private final List<Edge>[] graph;
+    private final ArrayList<Edge>[] edgeList;
+    // The maximum flow. Calculated by calling the {@link #solve} method.
+    private long maxFlow;
     // 'visited' and 'visitedToken' are variables used in graph sub-routines to
     // track whether a node has been visited or not. In particular, node 'i' was
     // recently visited if visited[i] == visitedToken is true. This is handy
     // because to mark all nodes as unvisited simply increment the visitedToken.
     protected int visitedToken = 1;
     protected int[] visited;
-
-    // Indicates whether the network flow algorithm has ran. The solver only
-    // needs to run once because it always yields the same result.
-    protected boolean solved;
-
-    // The maximum flow. Calculated by calling the {@link #solve} method.
-    protected long maxFlow;
-
-    // The adjacency list representing the flow graph.
-    protected List<Edge>[] graph;
-
+    // To avoid overflow, set infinity to a value less than Long.MAX_VALUE;
+    static final long INF = Long.MAX_VALUE / 2;
     /**
      * Creates an instance of a flow network solver. Use the {@link #addEdge} method to add edges to
      * the graph.
@@ -48,16 +42,17 @@ public abstract class NetworkFlowSolverBase {
         this.n = n;
         this.s = s;
         this.t = t;
-        initializeEmptyFlowGraph();
+        this.maxFlow = 0;
+        graph = new List[n];
+        edgeList = new ArrayList[n];
+        for (int i = 0; i < n; i++) {
+            edgeList[i] = new ArrayList<>();
+        }
+        System.arraycopy(edgeList, 0, graph, 0, n);
         visited = new int[n];
     }
 
-    // Constructs an empty graph with n nodes including s and t.
-    @SuppressWarnings("unchecked")
-    public void initializeEmptyFlowGraph() {
-        graph = new List[n];
-        for (int i = 0; i < n; i++) graph[i] = new ArrayList<Edge>();
-    }
+    // Constructs an empty graph with n nodes including s and t
 
     /**
      * Adds a directed edge (and its residual edge) to the flow graph.
@@ -70,12 +65,17 @@ public abstract class NetworkFlowSolverBase {
         if (capacity <= 0) throw new IllegalArgumentException("Forward edge capacity <= 0");
         Edge e1 = new Edge(from, to, capacity);
         Edge e2 = new Edge(to, from, 0);
-        e1.residual = e2;
-        e2.residual = e1;
+        e1.setResidual(e2);
+        e2.setResidual(e1);
         graph[from].add(e1);
         graph[to].add(e2);
     }
 
+    public void setMaxFlow(long flow) {
+        this.maxFlow += flow;
+    }
+    
+    
     /**
      * Returns the residual graph after the solver has been executed.This allows you to inspect the
     {@link Edge#flow} and {@link Edge#capacity} values of each edge. This is useful if you are
@@ -83,13 +83,23 @@ public abstract class NetworkFlowSolverBase {
      * @return 
      */
     public List<Edge>[] getGraph() {
-        execute();
         return graph;
     }
 
+    public int getN() {
+        return n;
+    }
+
+    public int getS() {
+        return s;
+    }
+
+    public int getT() {
+        return t;
+    }
+    
     // Returns the maximum flow from the source to the sink.
     public long getMaxFlow() {
-        execute();
         return maxFlow;
     }
     
@@ -101,12 +111,6 @@ public abstract class NetworkFlowSolverBase {
     // Returns true/false depending on whether node 'i' has been visited or not.
     public boolean visited(int i) {
         return visited[i] == visitedToken;
-    }
-    // Wrapper method that ensures we only call solve() once
-    public void execute() {
-        if (solved) return;
-        solved = true;
-        solve();
     }
 
     // Method to implement which solves the network flow problem.

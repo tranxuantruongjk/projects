@@ -30,10 +30,10 @@ public class FordFulkersonSolver extends NetworkFlowSolverBase {
     @Override
     public void solve() {
         // Find max flow by adding all augmenting path flows.
-        for (long f = dfs(s, INF); f != 0; f = dfs(s, INF)) {
+        for (long f = dfs(getS(), INF); f != 0; f = dfs(getS(), INF)) {
             visitedToken++;
             //System.out.println("visitedToken = " + visitedToken);
-            maxFlow += f;
+            setMaxFlow(f); // maxFlow += flow;
             //for (List<Edge> edges : graph) for (Edge e : edges) System.out.println(e.toString(s, t));
             //System.out.println("=))");
         }
@@ -41,15 +41,15 @@ public class FordFulkersonSolver extends NetworkFlowSolverBase {
     
     public long dfs(int node, long flow) {
         // At sink node, return augmented path flow.
-        if (node == t) return flow;
+        if (node == getT()) return flow;
 
         // Mark the current node as visited.
         visit(node);
 
-        List<Edge> edges = graph[node];
+        List<Edge> edges = getGraph()[node];
         for (Edge edge : edges) {
-            if (edge.remainingCapacity() > 0 && !visited(edge.to)) {
-                long bottleNeck = dfs(edge.to, min(flow, edge.remainingCapacity()));
+            if (edge.remainingCapacity() > 0 && !visited(edge.getTo())) {
+                long bottleNeck = dfs(edge.getTo(), min(flow, edge.remainingCapacity()));
 
                 // If we made it from s -> t (a.k.a bottleNeck > 0) then
                 // augment flow with bottleneck value.

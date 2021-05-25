@@ -1,5 +1,6 @@
 
 import static java.lang.Math.min;
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -14,17 +15,17 @@ import java.util.List;
  */
 public class FordFulkersonSolver extends NetworkFlowSolverBase {
     /**
-     * Creates an instance of a flow network solver. Use the {@link #addEdge} method to add edges to
-     * the graph.
+     * Creates an instance of a flow network solver.Use the {@link #addEdge} method to add edges to
+ the graph.
      *
-     * @param n - The number of nodes in the graph including s and t.
+     * @param nodes
      * @param s - The index of the source node, 0 <= s < n
      * @param t - The index of the sink node, 0 <= t < n and t != s
      */
-    public FordFulkersonSolver(int n, int s, int t) {
-        super(n, s, t);
+    public FordFulkersonSolver(List<Node> nodes, Node s, Node t) {
+        super(nodes, s, t);
     }
-
+    protected int visitedToken = 1;
     // Performs the Ford-Fulkerson method applying a depth first search as
     // a means of finding an augmenting path.
     @Override
@@ -39,16 +40,23 @@ public class FordFulkersonSolver extends NetworkFlowSolverBase {
         }
     }
     
-    public long dfs(int node, long flow) {
+    public long dfs(Node node, long flow) {
         // At sink node, return augmented path flow.
-        if (node == getT()) return flow;
+        if (node.equals(getT())) return flow;
 
         // Mark the current node as visited.
-        visit(node);
-
-        List<Edge> edges = getGraph()[node];
+        node.setVisited(visitedToken);
+        
+        //List<Edge> edges = getGraph()[node];
+        List<Edge> edges = new ArrayList<>();
+        for (int i = 0; i < this.getEdges().size(); i++) {
+            Edge edge = this.getEdges().get(i);
+            if (node.equals(edge.getFrom())) {
+                edges.add(edge);
+            }
+        }
         for (Edge edge : edges) {
-            if (edge.remainingCapacity() > 0 && !visited(edge.getTo())) {
+            if (edge.remainingCapacity() > 0 && edge.getTo().getVisited() != visitedToken) {
                 long bottleNeck = dfs(edge.getTo(), min(flow, edge.remainingCapacity()));
 
                 // If we made it from s -> t (a.k.a bottleNeck > 0) then

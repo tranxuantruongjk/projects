@@ -4,7 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/xuantruong/NetBeansProjects/MaxFlowProject/src/Main.java</file>
-            <file>file:/home/xuantruong/NetBeansProjects/MaxFlowProject/src/NetworkFlowSolverBase.java</file>
+            <file>file:/home/xuantruong/NetBeansProjects/MaxFlowProject/src/Node.java</file>
             <file>file:/home/xuantruong/NetBeansProjects/MaxFlowProject/src/EdmondsKarpSolver.java</file>
             <file>file:/home/xuantruong/NetBeansProjects/MaxFlowProject/src/FordFulkersonSolver.java</file>
             <file>file:/home/xuantruong/NetBeansProjects/MaxFlowProject/src/Edge.java</file>

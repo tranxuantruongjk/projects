@@ -9,24 +9,25 @@
  * @author xuantruong
  */
 public class Edge {
-    private int from, to;
+    private Node from;
+    private Node to;
     private Edge residual;
     private long flow;
     private final long capacity;
 
-    public int getFrom() {
+    public Node getFrom() {
         return from;
     }
 
-    public void setFrom(int from) {
+    public void setFrom(Node from) {
         this.from = from;
     }
 
-    public int getTo() {
+    public Node getTo() {
         return to;
     }
 
-    public void setTo(int to) {
+    public void setTo(Node to) {
         this.to = to;
     }
 
@@ -46,7 +47,7 @@ public class Edge {
         this.flow = flow;
     }
     
-    public Edge(int from, int to, long capacity) {
+    public Edge(Node from, Node to, long capacity) {
         this.from = from;
         this.to = to;
         this.capacity = capacity;
@@ -65,9 +66,10 @@ public class Edge {
         residual.flow -= bottleNeck;
     }
 
-    public String toString(int s, int t) {
-        String u = (from == s) ? "s" : ((from == t) ? "t" : String.valueOf(from));
-        String v = (to == s) ? "s" : ((to == t) ? "t" : String.valueOf(to));
+    @Override
+    public String toString() {
+        String u = from.getName();
+        String v = to.getName();
 //        String u = String.valueOf(from);
 //        String v = String.valueOf(to);
         return String.format(

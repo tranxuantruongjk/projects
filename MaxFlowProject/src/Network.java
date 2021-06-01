@@ -12,9 +12,8 @@ import java.util.List;
  *
  * @author xuantruong
  */
-public abstract class NetworkFlowSolverBase {
-    // Inputs: n = number of nodes, s = source, t = sink
-    private int n;
+public class Network {
+        // Inputs: n = number of nodes, s = source, t = sink
     private Node s;
     private Node t;
     // The adjacency list representing the flow graph.
@@ -29,12 +28,11 @@ public abstract class NetworkFlowSolverBase {
      * Creates an instance of a flow network solver. Use the {@link #addEdge} method to add edges to
      * the graph.
      *
-     * @param n - The number of nodes in the graph including s and t.
+     * @param nodes - The list of nodes in the graph including s and t.
      * @param s - The index of the source node, 0 <= s < n
      * @param t - The index of the sink node, 0 <= t < n and t != s
      */
-    public NetworkFlowSolverBase(List<Node> nodes, Node s, Node t) {
-        this.n = nodes.size();
+    public Network(List<Node> nodes, Node s, Node t) {
         this.s = s;
         this.t = t;
         this.maxFlow = 0;
@@ -63,20 +61,10 @@ public abstract class NetworkFlowSolverBase {
     public void setMaxFlow(long flow) {
         this.maxFlow += flow;
     }
-    
-    
-    /**
-     * Returns the residual graph after the solver has been executed.This allows you to inspect the
-    {@link Edge#flow} and {@link Edge#capacity} values of each edge. This is useful if you are
- debugging or want to figure out which edges were used during the max flow.
-     * @return 
-     */
-//    public List<Edge>[] getGraph() {
-//        return graph;
-//    }
 
+    // Return number of nodes
     public int getN() {
-        return n;
+        return this.nodes.size();
     }
 
     public Node getS() {
@@ -99,8 +87,5 @@ public abstract class NetworkFlowSolverBase {
     public long getMaxFlow() {
         return maxFlow;
     }
-    
-    // Method to implement which solves the network flow problem.
-    public abstract void solve();
-    
+
 }

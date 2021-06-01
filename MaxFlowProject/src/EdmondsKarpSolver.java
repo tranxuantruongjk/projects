@@ -15,7 +15,7 @@ import java.util.Queue;
  *
  * @author xuantruong
  */
-public class EdmondsKarpSolver extends NetworkFlowSolverBase {
+public class EdmondsKarpSolver extends NetworkFlowSolver {
     /**
      * Creates an instance of a flow network solver. Use the {@link #addEdge(int, int, int)} method
      * to add edges to the graph.
@@ -80,6 +80,7 @@ public class EdmondsKarpSolver extends NetworkFlowSolverBase {
                 break;
             }
         }
+        System.out.println("index = " + index + "priv.size() = " + prev.size());
         if (reach == 0) return 0;
         
         long bottleNeck = Long.MAX_VALUE;

@@ -28,7 +28,7 @@ public class Main {
         //Node t = nodes.get(n-1);
         //System.out.println("s = " + s.getName() + " t = " + t.getName());
         //NetworkFlowSolverBase solver = new FordFulkersonSolver(nodes, nodes.get(0), nodes.get(n-1));
-        NetworkFlowSolverBase solver = new EdmondsKarpSolver(nodes, nodes.get(0), nodes.get(n - 1));
+        NetworkFlowSolver solver = new FordFulkersonSolver(nodes, nodes.get(0), nodes.get(n - 1));
         //Edges from source
 //        solver.addEdge(s, 0, 10); 
 //        solver.addEdge(s, 1, 5);

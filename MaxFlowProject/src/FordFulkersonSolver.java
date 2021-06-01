@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author xuantruong
  */
-public class FordFulkersonSolver extends NetworkFlowSolverBase {
+public class FordFulkersonSolver extends NetworkFlowSolver {
     /**
      * Creates an instance of a flow network solver.Use the {@link #addEdge} method to add edges to
  the graph.

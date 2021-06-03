@@ -24,6 +24,8 @@ public class Network {
 
     // To avoid overflow, set infinity to a value less than Long.MAX_VALUE;
     static final long INF = Long.MAX_VALUE / 2;
+    public Network() {
+    }
     /**
      * Creates an instance of a flow network solver. Use the {@link #addEdge} method to add edges to
      * the graph.
@@ -33,9 +35,6 @@ public class Network {
      * @param t - The index of the sink node, 0 <= t < n and t != s
      */
     
-    public Network() {
-    }
-
     public Network(List<Node> nodes, Node s, Node t) {
         this.s = s;
         this.t = t;

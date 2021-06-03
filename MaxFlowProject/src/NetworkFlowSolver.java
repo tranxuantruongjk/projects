@@ -16,6 +16,9 @@ public abstract class NetworkFlowSolver {
     private Network network;
     private List<Edge> result = new ArrayList<>();
 
+    public NetworkFlowSolver() {
+    }
+
     public NetworkFlowSolver(Network network) {  
         this.network = network;
     }
@@ -26,6 +29,10 @@ public abstract class NetworkFlowSolver {
 
     public List<Edge> getResult() {
         return result;
+    }
+
+    public void setNetwork(Network network) {
+        this.network = network;
     }
     
     public List<Edge>[] getEachWay() {

@@ -9,30 +9,40 @@
  * @author xuantruong
  */
 public class NetworkFlowSolverContext {
-    public static NetworkFlowSolver solver;
-    public static Display display;
-    public NetworkFlowSolverContext() {
-        
+    public Network network;
+    public Displayer displayer;
+    public NetworkFlowSolverContext() {  
     }
-    public NetworkFlowSolverContext(NetworkFlowSolver solver, Display display) {
-        this.solver = solver;
-        this.display = display;
-    }
-
-    public static NetworkFlowSolver getSolver() {
-        return solver;
+    
+    public NetworkFlowSolverContext(Network network, Displayer displayer) {
+        this.network = network;
+        this.displayer = displayer;
     }
 
-    public static void setSolver(NetworkFlowSolver solver) {
-        NetworkFlowSolverContext.solver = solver;
+    public Network getNetwork() {
+        return network;
     }
 
-    public static Display getDisplay() {
-        return display;
+    public void setNetwork(Network network) {
+        this.network = network;
     }
 
-    public static void setDisplay(Display display) {
-        NetworkFlowSolverContext.display = display;
+    public Displayer getDisplayer() {
+        return displayer;
+    }
+
+    public void setDisplayer(Displayer displayer) {
+        this.displayer = displayer;
+        this.displayer.getSolver().setNetwork(network);
+    }
+    
+    
+    public void runAuto() {
+        displayer.run();
+    }
+    
+    public void runStep() {
+        displayer.step();
     }
     
 }

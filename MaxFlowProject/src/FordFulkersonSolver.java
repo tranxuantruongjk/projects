@@ -22,6 +22,10 @@ public class FordFulkersonSolver extends NetworkFlowSolver {
     }
     protected int visitedToken = 1;
     long INF = Long.MAX_VALUE;
+
+    public FordFulkersonSolver() {
+    }
+
     // Performs the Ford-Fulkerson method applying a depth first search as
     // a means of finding an augmenting path.
     @Override
@@ -29,6 +33,12 @@ public class FordFulkersonSolver extends NetworkFlowSolver {
         Node s = getNetwork().getS();
         // Find max flow by adding all augmenting path flows.
         for (long f = dfs(s, INF); f != 0; f = dfs(s, INF)) {
+//            for (int i = 0; i < getResult().size(); i++) {
+//                System.out.println(getResult().get(i).toString());
+//            }
+//            System.out.println("1");
+            
+            //getResult().clear();
             visitedToken++;
             getNetwork().setMaxFlow(f); // maxFlow += flow;
         }

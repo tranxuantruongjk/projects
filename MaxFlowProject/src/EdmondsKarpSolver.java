@@ -16,6 +16,10 @@ import java.util.Queue;
  * @author xuantruong
  */
 public class EdmondsKarpSolver extends NetworkFlowSolver {
+
+    public EdmondsKarpSolver() {
+    }
+    
     /**
      * Creates an instance of a flow network solver.Use the {@link #addEdge(int, int, int)} method
  to add edges to the graph.
@@ -32,7 +36,13 @@ public class EdmondsKarpSolver extends NetworkFlowSolver {
     public void solve() {
         long flow;
         do {
+//            for (int i = 0; i < getResult().size(); i++) {
+//                System.out.println(getResult().get(i).toString());
+//            }
+//            System.out.println("1");
+            //getResult().clear();
             visitedToken++;
+          
             flow = bfs();
             getNetwork().setMaxFlow(flow); // maxFlow += flow
         } while (flow != 0);

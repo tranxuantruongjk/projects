@@ -93,14 +93,18 @@ public class Main {
         network.addEdge(nodes.get(1), nodes.get(4), 5);
         network.addEdge(nodes.get(2), nodes.get(3), 3);
         network.addEdge(nodes.get(2), nodes.get(5), 20);
-        //NetworkFlowSolverBase solver = new FordFulkersonSolver(nodes, nodes.get(0), nodes.get(n-1));
-        NetworkFlowSolver solver = new EdmondsKarpSolver(network);
-        // Prints:
-        // Maximum Flow is: 23
-        //for (List<Edge> edges : solver.graph) for (Edge e : edges) System.out.println(e.toString(s, t));
-        solver.solve();
-        System.out.printf("Maximum Flow is: %d\n", network.getMaxFlow());
+        //NetworkFlowSolver solver = new FordFulkersonSolver(network);
+        //NetworkFlowSolver solver = new EdmondsKarpSolver(network);
 
+        //solver.solve();
+        NetworkFlowSolverContext context = new NetworkFlowSolverContext();
+        context.setNetwork(network);
+        context.setDisplayer(new EdmondsKarpDisplayer());
+        context.runStep();
+        System.out.printf("Maximum Flow is: %d\n", network.getMaxFlow());
+        for (int i = 0; i < context.getDisplayer().getResults().size(); i++) {
+            System.out.println(context.getDisplayer().getResults().get(i).toString());
+        }
 //        List<Edge>[] result = solver.getEachWay();
 //        for (int i = 0; i < result.length; i++) {
 //            for (int j = 0; j < result[i].size(); j++) {
@@ -109,9 +113,9 @@ public class Main {
 //            System.out.println("1");
 //        }
         
-        for (int i = 0; i < network.getEdges().size(); i++) {
-            System.out.println(network.getEdges().get(i).toString());
-        }
+//        for (int i = 0; i < network.getEdges().size(); i++) {
+//            System.out.println(network.getEdges().get(i).toString());
+//        }
         
     }
 }

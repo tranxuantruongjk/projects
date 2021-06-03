@@ -32,6 +32,10 @@ public class Network {
      * @param s - The index of the source node, 0 <= s < n
      * @param t - The index of the sink node, 0 <= t < n and t != s
      */
+    
+    public Network() {
+    }
+
     public Network(List<Node> nodes, Node s, Node t) {
         this.s = s;
         this.t = t;

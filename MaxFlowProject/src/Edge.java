@@ -73,7 +73,7 @@ public class Edge {
 //        String u = String.valueOf(from);
 //        String v = String.valueOf(to);
         return String.format(
-            "Edge %s -> %s | flow = %3d | capacity = %3d | is residual: %s",
-            u, v, flow, capacity, isResidual());
+            "Edge %s -> %s | flow = %3d | capacity = %3d | is residual: %s | visited: %3d %3d",
+            u, v, flow, capacity, isResidual(), from.getVisited(), to.getVisited());
     }
 }

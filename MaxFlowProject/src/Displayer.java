@@ -8,6 +8,6 @@
  *
  * @author xuantruong
  */
-class Display {
+public abstract class Displayer {
     
 }
